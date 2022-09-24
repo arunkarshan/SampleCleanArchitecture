@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.sampleaction.ui.orderlist.OrderListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/bg_img"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/log_in_illustration"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_margin="16dp"
+            android:background="@null"
+            app:isVisible="@{viewModel.orderList.size == 0 &amp;&amp; !viewModel.isLoading()}"
+            app:layout_constraintBottom_toTopOf="@+id/button_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_guideline"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/ic_anim_sad_person" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcy_order_items"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_0dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="48dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/button_container"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_guideline"
+            tools:listitem="@layout/layout_delivery_item" />
+
+        <ImageView
+            android:id="@+id/pgBar_Loading"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_loading"
+            app:isVisible="@{viewModel.isLoading}"
+            app:layout_constraintBottom_toTopOf="@+id/button_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadGif="@{true}" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16dp"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/_16dp"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/btn_load_seperate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:enabled="@{!viewModel.isLoading}"
+                android:background="@drawable/bg_curvrect_12_strk_transparent_clr_714fff"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.loadOrders(false)}"
+                android:paddingTop="@dimen/_16dp"
+                android:paddingBottom="@dimen/_16dp"
+                android:text="@string/load_seperate"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/btn_load_combined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:enabled="@{!viewModel.isLoading}"
+                android:background="@drawable/bg_curvrect_12_strk_transparent_clr_green"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.loadOrders(true)}"
+                android:paddingTop="@dimen/_16dp"
+                android:paddingBottom="@dimen/_16dp"
+                android:text="@string/load_combined"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

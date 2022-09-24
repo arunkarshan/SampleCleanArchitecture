@@ -1,0 +1,21 @@
+apply plugin: 'java-library'
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'com.google.devtools.ksp'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation koin.koinCore
+    implementation libraries.coroutinesCore
+    implementation koin.koinAnnotation
+    ksp koin.koinKsp
+
+    testImplementation testLibs.values()
+}

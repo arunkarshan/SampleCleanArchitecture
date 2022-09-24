@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">SampleAction</string>
+
+    <string name="sign_in_with_email">Sign In with Email</string>
+
+    <string name="email_id_txt">Email ID</string>
+    <string name="email_hint">user@email.com</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login_txt">Login</string>
+    <string name="load_combined">Load Orders Combined</string>
+    <string name="load_seperate">Load Orders Seperate</string>
+
+
+    <string name="enter_valid_email">Please enter a valid email</string>
+    <string name="password_should_be_minimum">Password should be atlest 6 characters</string>
+    <string name="sorry">Sorry</string>
+    <string name="login_failed">Login failed - %1$s</string>
+    <string name="in_discount">On a %1s discount!</string>
+    <string name="we_have_number">We have %1d in stock</string>
+    <string name="discount_title">Discount</string>
+    <string name="tools_item_name">Item Name</string>
+    <string name="tools_item_qty">We have n numbers</string>
+    <string name="unknown">Unknown</string>
+
+</resources>

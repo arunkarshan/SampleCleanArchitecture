@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.sampleaction.ui.orderdetails.OrderDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/_16dp">
+
+        <ImageView
+            android:id="@+id/bg_img"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/log_in_illustration"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_gradiant_ffffff_dce7ff"
+            android:padding="@dimen/_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bg_img">
+
+            <ImageView
+                android:id="@+id/item_pic"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="@dimen/_16dp"
+                android:padding="4dp"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.deliveryItem.imageUrl}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/itemPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="@{viewModel.deliveryItem.price + `$`}"
+                android:textColor="@color/saffron_ff5722"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_pic"
+                tools:text="45$%" />
+
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{viewModel.deliveryItem.name}"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemPrice"
+                tools:text="Item Name" />
+
+            <TextView
+                android:id="@+id/itemCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{@string/we_have_number(viewModel.deliveryItem.count)}"
+                android:textColor="@color/saffron_ff9800"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/itemName"
+                tools:text="We have 17 items" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDiscount"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:cardBackgroundColor="@color/green_267e2a"
+                android:layout_marginEnd="@dimen/_16dp"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/item_pic"
+                app:layout_constraintEnd_toEndOf="@+id/item_pic">
+
+                <TextView
+                    android:id="@+id/itemDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="@{viewModel.deliveryItem.discount}"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:text="33%" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/itemDiscountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/discount_title"
+                android:textColor="@color/green_267e2a"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintTop_toBottomOf="@id/cardDiscount"
+                app:layout_constraintEnd_toEndOf="@+id/cardDiscount"
+                app:layout_constraintStart_toStartOf="@+id/cardDiscount" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

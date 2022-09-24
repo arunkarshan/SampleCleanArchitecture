@@ -1,0 +1,44 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs"
+    id 'kotlin-parcelize'
+}
+
+apply from: "../androidlib.gradle"
+
+android {
+
+    defaultConfig {
+        applicationId "com.example.sampleaction"
+        versionCode 1
+        versionName "1.0"
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+    applicationVariants.all { variant ->
+        variant.sourceSets.java.each {
+            it.srcDirs += "build/generated/ksp/${variant.name}/kotlin"
+        }
+    }
+}
+
+dependencies {
+    api project(":utils")
+    api project(":domain")
+    api project(":data:data-local")
+    api project(":data:data-remote")
+    api project(":data:repository")
+
+    implementation lifeCyle.values()
+    implementation navigation.values()
+
+    implementation koin.values()
+
+    implementation libraries.glide
+    kapt libraries.glideKapt
+    implementation libraries.lottie
+
+}

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.sampleaction.ui.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradiant_ffffff_dce7ff">
+
+        <ImageView
+            android:id="@+id/bg_img"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/log_in_illustration"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="1sp"
+            android:text="@string/sign_in_with_email"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_guideline" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+            <ImageView
+                android:id="@+id/ic_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_email_square"
+                app:layout_constraintBottom_toBottomOf="@+id/et_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_email_id_lbl" />
+
+            <TextView
+                android:id="@+id/tv_email_id_lbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/email_id_txt"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@id/ic_email"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_curvrect_8_strk_40_efefef_clr_40_fafafa"
+                android:drawablePadding="@dimen/_12dp"
+                android:gravity="start|center_vertical"
+                android:hint="@string/email_hint"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.onEmailChanged(text)}"
+                android:paddingStart="@dimen/_12dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="@dimen/_12dp"
+                android:paddingBottom="16dp"
+                android:textAllCaps="false"
+                app:errorRes="@{viewModel.emailError}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/ic_email"
+                app:layout_constraintTop_toBottomOf="@id/tv_email_id_lbl" />
+
+            <ImageView
+                android:id="@+id/ic_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_password_square"
+                app:layout_constraintBottom_toBottomOf="@+id/et_password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_password_lbl" />
+
+            <TextView
+                android:id="@+id/tv_password_lbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="@dimen/_16dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/password"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@id/ic_password"
+                app:layout_constraintTop_toBottomOf="@id/et_email" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_curvrect_8_strk_40_efefef_clr_40_fafafa"
+                android:drawablePadding="@dimen/_12dp"
+                android:gravity="start|center_vertical"
+                android:hint="@string/enter_password"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/_12dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="@dimen/_12dp"
+                android:paddingBottom="16dp"
+                android:textAllCaps="false"
+                app:errorRes="@{viewModel.passwordError}"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.onPasswordChanged(text)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ic_email"
+                app:layout_constraintTop_toBottomOf="@id/tv_password_lbl" />
+
+
+            <TextView
+                android:id="@+id/btn_login"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/bg_curvrect_12_strk_transparent_clr_714fff"
+                android:gravity="center"
+                android:paddingTop="@dimen/_16dp"
+                android:paddingBottom="@dimen/_16dp"
+                android:text="@string/login_txt"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:isVisible="@{!viewModel.isLoading}"
+                android:onClick="@{()->viewModel.authenticateLogin()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/pgBar_Loading"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_loading"
+            app:isVisible="@{viewModel.isLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadGif="@{true}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

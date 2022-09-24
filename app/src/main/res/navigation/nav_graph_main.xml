@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@+id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.sampleaction.ui.login.LoginFragment"
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/showOrderListFragment"
+            app:destination="@id/orderFragment"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav_graph_main"
+            app:popUpToInclusive="false" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.example.sampleaction.ui.orderlist.OrderListFragment"
+        android:label="Order Fragment" >
+        <action
+            android:id="@+id/showOrderDeliveryItem"
+            app:destination="@id/orderDetailsFragment"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/orderFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.example.sampleaction.ui.orderdetails.OrderDetailsFragment"
+        android:label="Order Fragment" >
+        <argument
+            android:name="deliveryItem"
+            app:argType="com.example.sampleaction.models.vo.DeliveryItemVO"/>
+    </fragment>
+
+</navigation>
