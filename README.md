@@ -10,4 +10,4 @@ I am using Firebase RTDB as the login server, and comparing the user credentials
 Please use below credentials to login:
 
 email    :  arun@sample.com
-passeord :  test123
+password :  test123
