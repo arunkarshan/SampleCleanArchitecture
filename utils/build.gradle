@@ -6,7 +6,5 @@ apply from: "../androidlib.gradle"
 
 
 dependencies {
-    implementation baseLibraries.values()
-    implementation testLibs.values()
-
+    implementation uiModuleLibs
 }

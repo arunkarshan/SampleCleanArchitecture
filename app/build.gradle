@@ -26,17 +26,13 @@ android {
 }
 
 dependencies {
-    api project(":utils")
-    api project(":domain")
-    api project(":data:data-local")
-    api project(":data:data-remote")
-    api project(":data:repository")
+    implementation project(":utils")
+    implementation project(":domain")
+    implementation project(":datasource:datasource-local")
+    implementation project(":datasource:datasource-remote")
+    implementation project(":data" )
 
-    implementation lifeCyle.values()
-    implementation navigation.values()
-
-    implementation koin.values()
-
+    implementation uiModuleLibs
     implementation libraries.glide
     kapt libraries.glideKapt
     implementation libraries.lottie

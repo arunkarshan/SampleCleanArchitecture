@@ -1,9 +1,9 @@
-package com.example.domain.orders
+package com.example.sampleaction.repository.datasource
 
 import com.example.domain.base.ResultWrapper
-import com.example.domain.models.DeliveryItemDomain
-import com.example.domain.models.DiscountDomain
+import com.example.sampleaction.repository.model.DataResultWrapper
 import kotlinx.coroutines.flow.Flow
+
 
 /*********************************************************
  * Class   :  LoginLoacalSource
@@ -16,8 +16,6 @@ import kotlinx.coroutines.flow.Flow
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
 
-interface OrderRepository {
-    suspend fun getOrderItems(id: Long): Flow<ResultWrapper<List<DeliveryItemDomain>>>
-    suspend fun getDeliveryItemDiscount(id: Long): Flow<ResultWrapper<DiscountDomain>>
-    suspend fun getOrders(): Flow<ResultWrapper<List<Long>>>
+interface LoginDataSource {
+    suspend fun authenticateWithServer(email: String, password: String): Flow<DataResultWrapper<Boolean>>
 }

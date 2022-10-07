@@ -1,4 +1,0 @@
-apply from: "../../javalib.gradle"
-dependencies {
-    api project(":domain")
-}

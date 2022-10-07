@@ -8,8 +8,9 @@ ext {
 
     junit4Version = "4.13.2"
 
-    testLibs = [
 
+    libraries = [
+            //Test
             jUnitPlatform   : 'org.junit.platform:junit-platform-commons:1.8.2',
             androidXTest    : "androidx.arch.core:core-testing:2.1.0",
             jupiterTestEngine : 'org.junit.jupiter:junit-jupiter-engine:5.8.2',
@@ -18,49 +19,43 @@ ext {
             mock            :  "io.mockk:mockk:1.12.8",
             espressoLib     :  "androidx.test.espresso:espresso-core:3.4.0",
             coroutinesTest  :  "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2",
-    ]
 
-    baseLibraries = [
+            //Base
             appcompat        : "androidx.appcompat:appcompat:1.3.0-beta01",
             constraintLayout : 'androidx.constraintlayout:constraintlayout:1.1.3',
             multidex         : "androidx.multidex:multidex:2.0.1",
             legacySupport    : 'androidx.legacy:legacy-support-v4:1.0.0',
             kotlinStdLib     : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             ktxCore          : 'androidx.core:core-ktx:1.2.0',
-            materialLib      : 'com.google.android.material:material:1.3.0'
-    ]
+            materialLib      : 'com.google.android.material:material:1.3.0',
 
-    lifeCyle = [
+            //Lifecycle
             lifecycleXtn     : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
             lifecycleOwner   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
             lifecycleLiveData: "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
             lifecycleCommon  : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
             lifecycleRunTime : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
-    ]
 
-    navigation = [
+            //Navigation
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:$navigation_version",
             navigationUi      : "androidx.navigation:navigation-ui-ktx:$navigation_version",
-    ]
 
-    retrofit = [
+            //Retrofit
             retrofit          : "com.squareup.retrofit2:retrofit:2.9.0",
             retrofitScalar    : "com.squareup.retrofit2:converter-scalars:2.9.0",
             retrofitGson      : "com.squareup.retrofit2:converter-gson:2.9.0",
             okhttp3Logging    : "com.squareup.okhttp3:logging-interceptor:4.9.0",
-    ]
 
-    koin = [
+            //Koin
             koinCore          : "io.insert-koin:koin-core:$koin_version",
-            koinCompat        : "io.insert-koin:koin-android-compat:$koin_version",
             koinAndroid       : "io.insert-koin:koin-android:$koin_version",
             koinAnnotation    : "io.insert-koin:koin-annotations:$koin_ksp_version",
-            koinKsp           : "io.insert-koin:koin-ksp-compiler:$koin_ksp_version"
-    ]
+            koinKsp           : "io.insert-koin:koin-ksp-compiler:$koin_ksp_version",
 
-    libraries = [
+            //Coroutine
             coroutinesAndroid : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2',
             coroutinesCore    : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2',
+
             glide             : 'com.github.bumptech.glide:glide:4.11.0',
             glideKapt         : 'com.github.bumptech.glide:compiler:4.11.0',
 
@@ -69,4 +64,56 @@ ext {
 
             lottie            :  'com.airbnb.android:lottie:4.0.0',
     ]
+
+
+    lifeCyle = [
+            libraries.lifecycleXtn,
+            libraries.lifecycleOwner,
+            libraries.lifecycleLiveData,
+            libraries.lifecycleCommon,
+            libraries.lifecycleRunTime
+    ]
+
+    networkLibs = [
+            libraries.retrofit,
+            libraries.retrofitScalar,
+            libraries.retrofitGson,
+            libraries.okhttp3Logging,
+            libraries.okhttp3Logging,
+            libraries.okhttp3Logging,
+    ]
+
+    coreLibraries = [
+            libraries.kotlinStdLib,
+            libraries.coroutinesCore,
+            libraries.coroutinesTest,
+            libraries.koinCore,
+            libraries.koinAnnotation,
+            libraries.ktxCore,
+
+            libraries.jUnitPlatform,
+            libraries.jupiterTestEngine,
+            libraries.jUnitTest,
+            libraries.jUnitJupiter,
+            libraries.mock,
+    ]
+
+    coreAndroidLibraries = [
+            coreLibraries,
+            libraries.coroutinesAndroid,
+            libraries.koinAndroid,
+            libraries.androidXTest,
+            libraries.espressoLib,
+    ]
+
+    uiModuleLibs = [
+            lifeCyle,
+            libraries.appcompat,
+            libraries.constraintLayout,
+            libraries.multidex,
+            libraries.materialLib,
+            libraries.navigationFragment,
+            libraries.navigationUi,
+    ]
+
 }

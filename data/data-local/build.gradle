@@ -1,6 +1,0 @@
-apply plugin: 'com.android.library'
-apply from: "../../androidlib.gradle"
-
-dependencies {
-    api project(":data:repository")
-}

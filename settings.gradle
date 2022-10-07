@@ -15,7 +15,7 @@ dependencyResolutionManagement {
 rootProject.name = "SampleAction"
 include ':app'
 include ':utils'
-include ':data:data-remote'
-include ':data:data-local'
+include ':datasource:datasource-remote'
+include ':datasource:datasource-local'
 include ':domain'
-include ':data:repository'
+include ':data'

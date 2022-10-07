@@ -12,10 +12,6 @@ tasks.withType(Test) {
 }
 
 dependencies {
-    implementation koin.koinCore
-    implementation libraries.coroutinesCore
-    implementation koin.koinAnnotation
-    ksp koin.koinKsp
-
-    testImplementation testLibs.values()
+    implementation coreLibraries
+    ksp libraries.koinKsp
 }

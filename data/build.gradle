@@ -1,0 +1,4 @@
+apply from: "../javalib.gradle"
+dependencies {
+    implementation project(":domain")
+}

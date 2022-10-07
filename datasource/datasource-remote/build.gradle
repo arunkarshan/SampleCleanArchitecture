@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+apply from: "../../androidlib.gradle"
+
+android {
+    buildTypes{
+        debug {
+            buildConfigField("String", "BASE_API", '"https://digithreads-hosting.firebaseio.com"')
+
+        }
+        release {
+            buildConfigField("String", "BASE_API", '"https://digithreads-hosting.firebaseio.com"')
+        }
+    }
+}
+dependencies {
+    implementation project(":data" )
+    implementation networkLibs
+    debugImplementation libraries.chuckDebug
+    releaseImplementation libraries.chuckNoOp
+}
