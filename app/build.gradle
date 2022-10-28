@@ -26,7 +26,8 @@ android {
 }
 
 dependencies {
-    implementation project(":utils")
+    implementation project(":util:utils")
+    implementation project(":util:kashproxy")
     implementation project(":domain")
     implementation project(":datasource:datasource-local")
     implementation project(":datasource:datasource-remote")

@@ -1,0 +1,10 @@
+plugins {
+    id 'com.android.library'
+}
+
+apply from: "../../androidlib.gradle"
+
+
+dependencies {
+    implementation uiModuleLibs
+}

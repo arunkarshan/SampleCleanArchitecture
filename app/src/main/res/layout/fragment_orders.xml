@@ -109,7 +109,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:enabled="@{!viewModel.isLoading}"
                 android:background="@drawable/bg_curvrect_12_strk_transparent_clr_green"
                 android:gravity="center"
                 android:onClick="@{()->viewModel.loadOrders(true)}"

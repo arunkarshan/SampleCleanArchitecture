@@ -2,9 +2,11 @@ package com.example.domain.login
 
 import com.example.domain.base.ResultWrapper
 import com.example.domain.utils.asFlow
+import com.example.domain.utils.safeCallFlow
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.annotation.Factory
+import org.koin.core.annotation.Named
 
 
 /*********************************************************
@@ -19,11 +21,15 @@ import org.koin.core.annotation.Factory
  *********************************************************/
 
 @Factory
-internal class AuthenticateLoginUseCaseImpl(private val loginRepository: LoginRepository) : AuthenticateLoginUseCase {
+internal class AuthenticateLoginUseCaseImpl(
+    private val loginRepository: LoginRepository,
+    @Named("IODispatcher") private val dispatcher: CoroutineDispatcher) : AuthenticateLoginUseCase {
     override suspend fun invoke(params: AuthenticateLoginUseCase.Params): Flow<ResultWrapper<Boolean>> {
-        return loginRepository.authenticateWithServer(
-            email = params.email,
-            password = params.password
-        )
+        return safeCallFlow(dispatcher) {
+            loginRepository.authenticateWithServer(
+                email = params.email,
+                password = params.password
+            )
+        }
     }
 }

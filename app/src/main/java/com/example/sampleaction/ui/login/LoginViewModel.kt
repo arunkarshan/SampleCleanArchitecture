@@ -36,10 +36,10 @@ class LoginViewModel(
 
     val loginError = SingleLiveEvent<String?>()
 
-    private val _email = MutableLiveData<String>()
+    private val _email = MutableLiveData<String>("arun@sample.com")
     val email: LiveData<String> = _email
 
-    private val _password = MutableLiveData<String>()
+    private val _password = MutableLiveData<String>("test123")
     val password: LiveData<String> = _password
 
     private val _emailError = MutableLiveData<Int?>()

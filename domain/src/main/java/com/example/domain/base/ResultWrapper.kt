@@ -2,6 +2,12 @@
 
 package com.example.domain.base
 
+import com.example.domain.utils.asFlow
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flow
+
 sealed class ResultWrapper<out T> {
     data class Success<out T>(val value: T) : ResultWrapper<T>()
     data class Error(val error: Exception? = null, var type: ErrorType = ErrorType.GenericError) :
@@ -26,6 +32,26 @@ fun <T, R> ResultWrapper<T>.map(mapper: (T) -> R): ResultWrapper<R> {
         ResultWrapper.Error(e)
     }
 }
+
+suspend fun <T, R> Flow<ResultWrapper<Iterable<T>>>.flatMapSuspend(
+    dispatcher: CoroutineDispatcher,
+    mapper: suspend (T) -> R
+): Flow<ResultWrapper<Iterable<R>>> {
+    return try {
+        this.flatMapConcat {
+            when (it) {
+                is ResultWrapper.Success -> it.value.map { item -> mapper.invoke(item) }
+                    .let { result ->
+                        ResultWrapper.Success(result)
+                    }
+                else -> this as ResultWrapper<Iterable<R>>
+            }.asFlow(dispatcher)
+        }
+    } catch (e: java.lang.Exception) {
+        flow { emit(ResultWrapper.Error(e)) }
+    }
+}
+
 
 suspend fun <T, R> ResultWrapper<T>.mapSuspend(mapper: suspend (T) -> R): ResultWrapper<R> {
     return try {

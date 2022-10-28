@@ -1,10 +1,7 @@
 package com.example.data_remote.datasource
 
 import com.example.data_remote.network.LoginApi
-import com.example.data_remote.utils.callApi
-import com.example.data_remote.utils.callApiFlow
 import com.example.sampleaction.repository.datasource.LoginDataSource
-import com.example.sampleaction.repository.model.DataResultWrapper
 import com.example.sampleaction.repository.utils.asFlow
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -32,13 +29,11 @@ class LoginDataSourceImpl(
     override suspend fun authenticateWithServer(
         email: String,
         password: String
-    ): Flow<DataResultWrapper<Boolean>> {
-        return callApiFlow(dispatcher) {
-            loginApi.authenticateEmailPassword(email, password).let {
-                if (it.email != email) throw Exception("No user found!")
-                else if (it.password != password) throw Exception("Invalid credentials!")
-                else true
-            }
-        }
+    ): Flow<Boolean> {
+        return loginApi.authenticateEmailPassword(email, password).let {
+            if (it.email != email) throw Exception("No user found!")
+            else if (it.password != password) throw Exception("Invalid credentials!")
+            else true
+        }.asFlow(dispatcher)
     }
 }

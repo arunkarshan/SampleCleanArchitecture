@@ -1,11 +1,9 @@
 package com.example.sampleaction.repository.model.mapper
 
-import com.example.domain.base.ErrorType
 import com.example.domain.models.DeliveryItemDomain
 import com.example.domain.models.DiscountDomain
 import com.example.sampleaction.repository.model.DataDeliveryItem
 import com.example.sampleaction.repository.model.DataDiscountResponse
-import com.example.sampleaction.repository.model.DataErrorType
 
 
 /*********************************************************
@@ -33,10 +31,3 @@ fun DataDiscountResponse.toDomain() = DiscountDomain(
     id = id, price = price, discount = "${discount * 100}%"
 )
 
-
-fun DataErrorType.toDomain(): ErrorType {
-    return when(this){
-        is DataErrorType.GenericError -> ErrorType.GenericError
-        is DataErrorType.NetworkError -> ErrorType.NetworkError
-    }
-}

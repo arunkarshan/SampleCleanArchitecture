@@ -4,7 +4,6 @@ import com.example.domain.base.ResultWrapper
 import com.example.domain.login.LoginRepository
 import com.example.sampleaction.repository.datasource.LoginDataSource
 import com.example.sampleaction.repository.model.mapper.toDomain
-import com.example.sampleaction.repository.model.toDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.koin.core.annotation.Factory
@@ -29,8 +28,7 @@ internal class LoginRepositoryImpl(
     override suspend fun authenticateWithServer(
         email: String,
         password: String
-    ): Flow<ResultWrapper<Boolean>> {
+    ): Flow<Boolean> {
         return loginRemoteSource.authenticateWithServer(email = email, password = password)
-            .map { it.toDomain() }
     }
 }

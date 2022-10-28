@@ -1,15 +1,11 @@
 package com.example.domain.orders
 
-import com.example.domain.base.BaseFlowUseCase
 import com.example.domain.base.ResultWrapper
-import com.example.domain.base.flatMap
 import com.example.domain.models.DeliveryItemDomain
+import com.example.domain.utils.flatMap
+import com.example.domain.utils.safeCallFlow
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMap
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.*
 import org.koin.core.annotation.Factory
 import org.koin.core.annotation.Named
 
@@ -32,23 +28,37 @@ internal class GetOrderItemsListUseCaseImpl(
     override suspend fun invoke(
         params: GetOrderItemsListUseCase.Params
     ): Flow<ResultWrapper<List<DeliveryItemDomain>>> {
-//        orderRepository.run {
-//            withContext(dispatcher) {
-//                getOrders().flatMap {
-//                    getOrderItems(it).getValue()
-//                }.let {
-//                    if (loadCombined) combineItems(it.getValue()) else it
-//                }.applyEach { item ->
-//                    item.apply {
-//                        getDeliveryItemDiscount(item.id).getValue()?.let {
-//                            price = it.price
-//                            discount = it.discount
-//                        }
-//                    }
-//                }.toList()
-//            }.asFlow(Dispatchers.IO)
-//        }
-//        return orderRepository.getDeliveryItems(params.loadCombined)
-        return flow {  }
+        return getItemsFromServer(params.loadCombined)
+    }
+
+    suspend fun getItemsFromServer(loadCombined: Boolean): Flow<ResultWrapper<List<DeliveryItemDomain>>> {
+        return safeCallFlow(dispatcher) {
+            orderRepository.run {
+                getOrders().flatMap {
+                    getOrderItems(it)
+                }.map {
+                    if (loadCombined) combineItems(it) else it
+                }.map { items ->
+                    items.map {
+                        it.apply {
+                            getDeliveryItemDiscount(id).map { dscnt ->
+                                price = dscnt.price
+                                discount = dscnt.discount
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun combineItems(list: Iterable<DeliveryItemDomain>?): List<DeliveryItemDomain> {
+        return (list ?: emptyList()).apply {
+            forEach { item ->
+                item.count = filter { item.name == it.name }.sumOf { it.count }
+            }
+        }.distinctBy {
+            it.name
+        }
     }
 }

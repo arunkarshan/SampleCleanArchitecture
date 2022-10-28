@@ -26,7 +26,7 @@ class OrderListViewModel(
     private val getOrderItemsListUseCase: GetOrderItemsListUseCase
 ) : BaseViewModel() {
     private val _isLoading = MutableLiveData(false)
-    fun isLoading(): LiveData<Boolean> = _isLoading.map { it }
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _orderList = MutableLiveData<List<DeliveryItemVO>>()
     val orderList : LiveData<List<DeliveryItemVO>> = _orderList

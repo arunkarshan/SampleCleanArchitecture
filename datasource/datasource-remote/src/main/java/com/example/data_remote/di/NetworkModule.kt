@@ -4,6 +4,7 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.data_remote.utils.NetworkConnectionInterceptor
+import com.example.data_remote.utils.NetworkProxy
 import com.example.sampleaction.BuildConfig
 import com.google.gson.GsonBuilder
 import okhttp3.Cache
@@ -63,6 +64,7 @@ class NetworkModule {
                     .build()
             )
             addInterceptor(NetworkConnectionInterceptor(context))
+            addInterceptor(NetworkProxy())
 
             readTimeout(100, TimeUnit.SECONDS).build()
             cache(cache)

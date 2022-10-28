@@ -1,0 +1,19 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "../../androidlib.gradle"
+
+android {
+    namespace 'com.appspiriment.kashproxy'
+    
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation uiModuleLibs
+}

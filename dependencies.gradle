@@ -11,30 +11,30 @@ ext {
 
     libraries = [
             //Test
-            jUnitPlatform   : 'org.junit.platform:junit-platform-commons:1.8.2',
-            androidXTest    : "androidx.arch.core:core-testing:2.1.0",
+            jUnitPlatform     : 'org.junit.platform:junit-platform-commons:1.8.2',
+            androidXTest      : "androidx.arch.core:core-testing:2.1.0",
             jupiterTestEngine : 'org.junit.jupiter:junit-jupiter-engine:5.8.2',
-            jUnitTest       :  "androidx.test.ext:junit:1.1.3",
-            jUnitJupiter    :  "org.junit.jupiter:junit-jupiter-api:5.8.2",
-            mock            :  "io.mockk:mockk:1.12.8",
-            espressoLib     :  "androidx.test.espresso:espresso-core:3.4.0",
-            coroutinesTest  :  "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2",
+            jUnitTest         : "androidx.test.ext:junit:1.1.3",
+            jUnitJupiter      : "org.junit.jupiter:junit-jupiter-api:5.8.2",
+            mock              : "io.mockk:mockk:1.12.8",
+            espressoLib       : "androidx.test.espresso:espresso-core:3.4.0",
+            coroutinesTest    : "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2",
 
             //Base
-            appcompat        : "androidx.appcompat:appcompat:1.3.0-beta01",
-            constraintLayout : 'androidx.constraintlayout:constraintlayout:1.1.3',
-            multidex         : "androidx.multidex:multidex:2.0.1",
-            legacySupport    : 'androidx.legacy:legacy-support-v4:1.0.0',
-            kotlinStdLib     : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            ktxCore          : 'androidx.core:core-ktx:1.2.0',
-            materialLib      : 'com.google.android.material:material:1.3.0',
+            appcompat         : "androidx.appcompat:appcompat:1.3.0-beta01",
+            constraintLayout  : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            multidex          : "androidx.multidex:multidex:2.0.1",
+            legacySupport     : 'androidx.legacy:legacy-support-v4:1.0.0',
+            kotlinStdLib      : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            ktxCore           : 'androidx.core:core-ktx:1.2.0',
+            materialLib       : 'com.google.android.material:material:1.3.0',
 
             //Lifecycle
-            lifecycleXtn     : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
-            lifecycleOwner   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
-            lifecycleLiveData: "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
-            lifecycleCommon  : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
-            lifecycleRunTime : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+            lifecycleXtn      : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            lifecycleOwner    : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+            lifecycleLiveData : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+            lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+            lifecycleRunTime  : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
 
             //Navigation
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:$navigation_version",
@@ -51,6 +51,8 @@ ext {
             koinAndroid       : "io.insert-koin:koin-android:$koin_version",
             koinAnnotation    : "io.insert-koin:koin-annotations:$koin_ksp_version",
             koinKsp           : "io.insert-koin:koin-ksp-compiler:$koin_ksp_version",
+            koinTest          : "io.insert-koin:koin-test:$koin_version",
+            koinTestJunit     : "io.insert-koin:koin-test-junit4:$koin_version",
 
             //Coroutine
             coroutinesAndroid : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2',
@@ -62,7 +64,7 @@ ext {
             chuckDebug        : 'com.github.chuckerteam.chucker:library:3.5.2',
             chuckNoOp         : 'com.github.chuckerteam.chucker:library-no-op:3.5.2',
 
-            lottie            :  'com.airbnb.android:lottie:4.0.0',
+            lottie            : 'com.airbnb.android:lottie:4.0.0',
     ]
 
 
@@ -83,6 +85,7 @@ ext {
             libraries.okhttp3Logging,
     ]
 
+
     coreLibraries = [
             libraries.kotlinStdLib,
             libraries.coroutinesCore,
@@ -96,6 +99,16 @@ ext {
             libraries.jUnitTest,
             libraries.jUnitJupiter,
             libraries.mock,
+    ]
+
+  coreTestLibraries = [
+            libraries.jUnitPlatform,
+            libraries.jupiterTestEngine,
+            libraries.jUnitTest,
+            libraries.jUnitJupiter,
+            libraries.mock,
+            libraries.koinTest,
+            libraries.koinTestJunit,
     ]
 
     coreAndroidLibraries = [

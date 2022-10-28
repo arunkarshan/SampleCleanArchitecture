@@ -43,5 +43,6 @@ tasks.withType(Test) {
 
 dependencies {
     implementation coreAndroidLibraries
+    testImplementation coreTestLibraries
     ksp libraries.koinKsp
 }

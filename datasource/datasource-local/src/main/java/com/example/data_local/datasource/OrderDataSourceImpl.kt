@@ -3,7 +3,6 @@ package com.example.data_local.datasource
 import com.example.sampleaction.repository.datasource.OrdersDataSource
 import com.example.sampleaction.repository.model.DataDeliveryItem
 import com.example.sampleaction.repository.model.DataDiscountResponse
-import com.example.sampleaction.repository.model.DataResultWrapper
 import org.koin.core.annotation.Factory
 import org.koin.core.annotation.Named
 
@@ -21,15 +20,15 @@ import org.koin.core.annotation.Named
 @Factory
 @Named("Local")
 class OrderDataSourceImpl() : OrdersDataSource {
-    override suspend fun getOrderItems(id: Long): DataResultWrapper<List<DataDeliveryItem>> {
+    override suspend fun getOrderItems(id: Long): List<DataDeliveryItem> {
         throw Exception("This should not be used as Login don't have local impl")
     }
 
-    override suspend fun getDeliveryItemDiscount(id: Long): DataResultWrapper<DataDiscountResponse> {
+    override suspend fun getDeliveryItemDiscount(id: Long): DataDiscountResponse {
         throw Exception("This should not be used as Login don't have local impl")
     }
 
-    override suspend fun getOrders(): DataResultWrapper<List<Long>> {
+    override suspend fun getOrders(): List<Long> {
         throw Exception("This should not be used as Login don't have local impl")
     }
 

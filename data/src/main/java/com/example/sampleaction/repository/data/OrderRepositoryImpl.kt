@@ -3,11 +3,13 @@ package com.example.sampleaction.repository.data
 import com.example.domain.orders.OrderRepository
 import com.example.domain.utils.asFlow
 import com.example.sampleaction.repository.datasource.OrdersDataSource
-import com.example.sampleaction.repository.model.mapToDomain
 import com.example.sampleaction.repository.model.mapper.toDomain
-import com.example.sampleaction.repository.model.toDomain
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
 import org.koin.core.annotation.Factory
 import org.koin.core.annotation.Named
 
@@ -29,16 +31,16 @@ internal class OrderRepositoryImpl(
 ) : OrderRepository {
     override suspend fun getOrderItems(id: Long) =
         ordersRemoteSource.getOrderItems(id)
-            .mapToDomain { it.map { item -> item.toDomain() } }
+            .map { it.toDomain() }
             .asFlow(dispatcher)
 
     override suspend fun getDeliveryItemDiscount(id: Long) =
         ordersRemoteSource.getDeliveryItemDiscount(id)
-            .mapToDomain { it.toDomain() }
+            .toDomain()
             .asFlow(dispatcher)
 
     override suspend fun getOrders() =
-        ordersRemoteSource.getOrders()
-            .toDomain()
-            .asFlow(dispatcher)
+        flow {
+            ordersRemoteSource.getOrders().forEach { emit(it) }
+        }.flowOn(dispatcher)
 }

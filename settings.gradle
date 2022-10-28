@@ -14,8 +14,10 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SampleAction"
 include ':app'
-include ':utils'
 include ':datasource:datasource-remote'
 include ':datasource:datasource-local'
 include ':domain'
 include ':data'
+include ':arch:core'
+include ':util:utils'
+include ':util:kashproxy'

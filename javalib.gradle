@@ -12,6 +12,8 @@ tasks.withType(Test) {
 }
 
 dependencies {
+    implementation project(":arch:core")
     implementation coreLibraries
+    testImplementation coreTestLibraries
     ksp libraries.koinKsp
 }

@@ -1,7 +1,5 @@
 package com.example.sampleaction.repository.datasource
 
-import com.example.domain.base.ResultWrapper
-import com.example.sampleaction.repository.model.DataResultWrapper
 import kotlinx.coroutines.flow.Flow
 
 
@@ -17,5 +15,5 @@ import kotlinx.coroutines.flow.Flow
  *********************************************************/
 
 interface LoginDataSource {
-    suspend fun authenticateWithServer(email: String, password: String): Flow<DataResultWrapper<Boolean>>
+    suspend fun authenticateWithServer(email: String, password: String): Flow<Boolean>
 }

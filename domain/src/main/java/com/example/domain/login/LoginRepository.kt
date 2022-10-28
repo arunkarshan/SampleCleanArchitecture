@@ -16,5 +16,5 @@ import kotlinx.coroutines.flow.Flow
  *********************************************************/
 
 interface LoginRepository {
-    suspend fun authenticateWithServer(email: String, password: String): Flow<ResultWrapper<Boolean>>
+    suspend fun authenticateWithServer(email: String, password: String): Flow<Boolean>
 }
